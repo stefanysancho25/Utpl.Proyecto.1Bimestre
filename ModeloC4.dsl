@@ -1,4 +1,4 @@
-workspace "Plataforma de gestion de titulos"  {
+workspace "Plataforma de gestion de titulos v2"  {
     description "Sistema de gestión de titulos"
     
     model {
