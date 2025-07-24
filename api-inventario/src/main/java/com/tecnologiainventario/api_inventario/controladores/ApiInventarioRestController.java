@@ -1,11 +1,15 @@
 package com.tecnologiainventario.api_inventario.controladores;
 
 import com.tecnologiainventario.api_inventario.dtos.InventaroDto;
+import com.tecnologiainventario.api_inventario.entidades.inventario;
+import com.tecnologiainventario.api_inventario.servicios.InventarioService;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -14,7 +18,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/inventario")
+
 public class ApiInventarioRestController {
+    @Autowired
+    private InventarioService inventarioService;
+
     private final List<InventaroDto> inventario = new ArrayList<>();
 
     public ApiInventarioRestController() {
@@ -58,8 +66,24 @@ public class ApiInventarioRestController {
         for (InventaroDto item : inventario) {
             if (item.getId() == id) {
                 return item;
+
             }
+
         }
+
         return null;
     }
+
+    // Obtener un ordenes por correo
+    @GetMapping("/busqueda/{correo}")
+    public List<inventario> getListaInventarioByCorreo(@PathVariable String correo) {
+        var inventarios = inventarioService.BuscarPorCorreo(correo);
+        if (inventarios.isEmpty()) {
+            return null; // O lanzar una excepción si no se encuentra
+        }
+        System.out.println("Obteniendo inventarios por el correo: " + correo);
+        // Retornar el primer inventario encontrado
+        return inventarios;
+    }
+
 }
