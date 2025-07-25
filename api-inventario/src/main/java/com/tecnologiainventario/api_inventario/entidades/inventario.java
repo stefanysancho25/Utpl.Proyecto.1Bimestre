@@ -1,18 +1,13 @@
 package com.tecnologiainventario.api_inventario.entidades;
 
-import java.io.Serializable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import java.io.Serializable;
+
 
 @Entity
-@Table(name = "inventario resgistro de clientes")
+@Table(name = "inventario_registro_clientes")
 @AllArgsConstructor
 @Getter @Setter @NoArgsConstructor
 
@@ -23,7 +18,7 @@ public class inventario  implements Serializable{
 
 private Integer id;
 
-private String Nameusuario;
+private String nameUsuario;
 
 private String apellido;
 

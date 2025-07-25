@@ -4,16 +4,26 @@ public class InventaroDto {
     private long id;
     private String nombre;
     private String descripcion;
-    private int cantidad;  
+    private int cantidad; 
+    private String correo; 
 
     // Constructor
-    public InventaroDto(long id, String nombre, String descripcion, int cantidad) {
+    public InventaroDto(long id, String nombre, String descripcion, int cantidad, String correo) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
-
+        this.correo = correo;
     }
+
+   // Constructor sin 'id' (útil para crear nuevos registros sin asignar ID manualmente)
+    public InventaroDto(String nombre, String descripcion, int cantidad, String correo) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.correo = correo; // Inicialización del nuevo campo
+    }
+
 
     // Getters y setters
 
@@ -56,6 +66,14 @@ public class InventaroDto {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+    // ¡Getters y setters para el nuevo campo 'correo'!
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
 }
