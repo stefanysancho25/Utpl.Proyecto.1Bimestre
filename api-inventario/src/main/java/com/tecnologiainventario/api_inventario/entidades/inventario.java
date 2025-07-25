@@ -27,7 +27,7 @@ private String Nameusuario;
 
 private String apellido;
 
-private String cidad;
+private String ciudad;
 
 private String cedula;
 
