@@ -13,26 +13,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
 @RestController
 @RequestMapping("/api/inventario")
 
 public class ApiInventarioRestController {
-private final List<InventaroDto> inventario = new ArrayList<>();
+    private final List<InventaroDto> inventario = new ArrayList<>();
 
-@Autowired
+    @Autowired
     private InventarioService inventarioService;
 
-@Autowired
+    @Autowired
     private EmailService emailService;
 
     @GetMapping("/inventarios")
-public String obtenerInventarios() {
-    return " lista de inventario ";
+    public String obtenerInventarios() {
+        return " lista de inventario ";
 
-}
-    
+    }
 
     public ApiInventarioRestController() {
         inventario.add(new InventaroDto(1, "Cafini Parlante Bluetooth", "Parlante inalámbrico con Bluetooth", 10));
@@ -62,20 +59,22 @@ public String obtenerInventarios() {
         // Enviar correo de notificación
         String correoDestino = nuevoProducto.getCorreo(); // ¡Obteniendo el correo del DTO!
         if (correoDestino != null && !correoDestino.isEmpty()) {
-        emailService.enviarCorreo(correoDestino, "Nuevo Producto Agregado",
-                "Se ha agregado un nuevo producto: " + nuevoProducto.getNombre()
-                + ". Descripción: " + nuevoProducto.getDescripcion() + ". Cantidad: " + nuevoProducto.getCantidad());
+            emailService.enviarCorreo(correoDestino, "Nuevo Producto Agregado",
+                    "Se ha agregado un nuevo producto: " + nuevoProducto.getNombre()
+                            + ". Descripción: " + nuevoProducto.getDescripcion() + ". Cantidad: "
+                            + nuevoProducto.getCantidad());
         } else {
             System.out.println("No se proporcionó un correo para enviar la notificación.");
         }
 
         return new ResponseEntity<>(nuevoProducto, HttpStatus.CREATED);
-    
+
     }
 
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarProducto(@PathVariable long id) {
-        boolean eliminado = inventarioService.eliminarInventario(id); // Asumiendo que el servicio tiene un método para eliminar por ID
+        boolean eliminado = inventarioService.eliminarInventario(id); // Asumiendo que el servicio tiene un método para
+                                                                      // eliminar por ID
         if (eliminado) {
             return new ResponseEntity<>("Producto eliminado", HttpStatus.OK);
         } else {
@@ -111,18 +110,16 @@ public String obtenerInventarios() {
         List<InventaroDto> dtos = new ArrayList<>();
         for (inventario entidad : entidadesInventario) {
             dtos.add(new InventaroDto(
-                entidad.getId(),
-                entidad.getNombre(),
-                entidad.getDescripcion(),
-                entidad.getCantidad(),
-                entidad.getEmail() 
-            ));
+                    entidad.getId(),
+                    entidad.getNombre(),
+                    entidad.getDescripcion(),
+                    entidad.getCantidad(),
+                    entidad.getEmail()));
         }
 
         System.out.println("Obteniendo inventarios por el correo: " + correo);
         // Retornar el primer inventario encontrado
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
-
 
 }

@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "inventario_registro_clientes")
+@Table(name = "inventarioregistroclientes")
 @AllArgsConstructor
 @Getter @Setter @NoArgsConstructor
 
