@@ -4,8 +4,8 @@ public class InventaroDto {
     private long id;
     private String nombre;
     private String descripcion;
-    private int cantidad; 
-    private String correo; 
+    private int cantidad;
+    private String email;
 
     // Constructor
     public InventaroDto(long id, String nombre, String descripcion, int cantidad, String correo) {
@@ -13,17 +13,29 @@ public class InventaroDto {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
-        this.correo = correo;
+        this.email = email;
     }
 
-   // Constructor sin 'id' (útil para crear nuevos registros sin asignar ID manualmente)
-    public InventaroDto(String nombre, String descripcion, int cantidad, String correo) {
+    // Constructor sin 'id' (útil para crear nuevos registros sin asignar ID
+    // manualmente)
+    public InventaroDto(String nombre, String descripcion, int cantidad, String email) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
-        this.correo = correo; // Inicialización del nuevo campo
+        this.email = email; // Inicialización del nuevo campo
     }
 
+    // Constructor vacío (necesario para Spring)
+    public InventarioDto() {
+    }
+
+    // Constructor con nombre, descripcion, cantidad (si es necesario para casos
+    // específicos)
+    public InventarioDto(String nombre, String descripcion, int cantidad) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+    }
 
     // Getters y setters
 
@@ -33,15 +45,6 @@ public class InventaroDto {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public InventaroDto() {
-    }
-
-    public InventaroDto(String nombre, String descripcion, int cantidad) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.cantidad = cantidad;
     }
 
     public String getNombre() {
@@ -67,13 +70,14 @@ public class InventaroDto {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-    // ¡Getters y setters para el nuevo campo 'correo'!
-    public String getCorreo() {
-        return correo;
+
+    // ¡Getters y setters para el nuevo campo 'email'!
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }
