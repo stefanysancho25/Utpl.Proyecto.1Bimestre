@@ -12,7 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-@Table(name = "inventario de tecnologia")
+@Table(name = "inventario resgistro de clientes")
 @AllArgsConstructor
 @Getter @Setter @NoArgsConstructor
 
@@ -22,15 +22,17 @@ public class inventario  implements Serializable{
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Integer id;
 
-private String firstName;
+private String Nameusuario;
 
-private String lastName;
+private String apellido;
 
-private String identification;
+private String cidad;
+
+private String cedula;
+
+private String telefono;
 
 private String email;
-
-private String phone;
 
 }
 
