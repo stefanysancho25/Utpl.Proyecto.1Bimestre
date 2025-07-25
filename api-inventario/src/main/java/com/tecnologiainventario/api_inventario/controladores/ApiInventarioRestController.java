@@ -20,9 +20,14 @@ import java.util.List;
 @RequestMapping("/api/inventario")
 
 public class ApiInventarioRestController {
-    @Autowired
-    private InventarioService inventarioService;
 
+@Autowired
+    private InventarioService inventarioService;
+    @GetMapping("/inventarios")
+public String obtenerInventarios() {
+    return " lista de inventario ";
+
+}
     private final List<InventaroDto> inventario = new ArrayList<>();
 
     public ApiInventarioRestController() {
