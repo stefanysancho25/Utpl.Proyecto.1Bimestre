@@ -49,7 +49,6 @@ public class ApiInventarioRestController {
                         entidad.getCostoProducto(),
                         entidad.getDescripcion(),
                         entidad.getCantidad()))
-
                 .collect(Collectors.toList());
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
@@ -60,16 +59,15 @@ public class ApiInventarioRestController {
         Inventario nuevaEntidad = new Inventario();
         // Asigna propiedades del DTO a la entidad
         nuevaEntidad.setNameUsuario(nuevoProductoDto.getNombre());
-        nuevaEntidad.setApellido(nuevoProductoDto.getApellido());      
-        nuevaEntidad.setCedula(nuevoProductoDto.getCedula());        
+        nuevaEntidad.setApellido(nuevoProductoDto.getApellido());
+        nuevaEntidad.setCedula(nuevoProductoDto.getCedula());
         nuevaEntidad.setTelefono(nuevoProductoDto.getTelefono());
         nuevaEntidad.setEmail(nuevoProductoDto.getEmail());
-        nuevaEntidad.setNombreProducto(nuevoProductoDto.getNombreProducto()); 
-        nuevaEntidad.setMarca(nuevoProductoDto.getMarca());             
-        nuevaEntidad.setCostoProducto(nuevoProductoDto.getCostoProducto()); 
+        nuevaEntidad.setNombreProducto(nuevoProductoDto.getNombreProducto());
+        nuevaEntidad.setMarca(nuevoProductoDto.getMarca());
+        nuevaEntidad.setCostoProducto(nuevoProductoDto.getCostoProducto());
         nuevaEntidad.setDescripcion(nuevoProductoDto.getDescripcion());
         nuevaEntidad.setCantidad(nuevoProductoDto.getCantidad());
-
 
         // Guardar la entidad en la base de datos
         Inventario inventarioGuardado = inventarioService.guardarInventario(nuevaEntidad);
@@ -88,15 +86,17 @@ public class ApiInventarioRestController {
                 inventarioGuardado.getDescripcion(),
                 inventarioGuardado.getCantidad());
 
-
         // Enviar correo de notificación
         String correoDestino = inventarioGuardado.getEmail();
         if (correoDestino != null && !correoDestino.isEmpty()) {
-            emailService.enviarCorreo(correoDestino, "Nuevo Producto Agregado", 
-                "Se ha agregado un nuevo producto: " + inventarioGuardado.getNombreProducto() + ". Marca: " + inventarioGuardado.getMarca() 
-                + ". Costo: $" + inventarioGuardado.getCostoProducto() + ". Descripción: " + inventarioGuardado.getDescripcion() +
-                ". Cantidad: " + inventarioGuardado.getCantidad() +". Registrado por: " + inventarioGuardado.getNameUsuario() + " " + inventarioGuardado.getApellido() +
-                " (" + inventarioGuardado.getCedula() + ", " + inventarioGuardado.getTelefono() + ")"
+            emailService.enviarCorreo(correoDestino, "Nuevo Producto Agregado",
+                    "Se ha agregado un nuevo producto: " + inventarioGuardado.getNombreProducto() + ". Marca: "
+                            + inventarioGuardado.getMarca()
+                            + ". Costo: $" + inventarioGuardado.getCostoProducto() + ". Descripción: "
+                            + inventarioGuardado.getDescripcion() +
+                            ". Cantidad: " + inventarioGuardado.getCantidad() + ". Registrado por: "
+                            + inventarioGuardado.getNameUsuario() + " " + inventarioGuardado.getApellido() +
+                            " (" + inventarioGuardado.getCedula() + ", " + inventarioGuardado.getTelefono() + ")");
         } else {
             System.out.println("No se proporcionó un correo para enviar la notificación.");
         }
@@ -129,11 +129,11 @@ public class ApiInventarioRestController {
                     entidad.getTelefono(),
                     entidad.getEmail(),
                     entidad.getNombreProducto(),
-                    entidad.getMarca(),        
+                    entidad.getMarca(),
                     entidad.getCostoProducto(),
                     entidad.getDescripcion(),
-                    entidad.getCantidad())
-                
+                    entidad.getCantidad());
+
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
