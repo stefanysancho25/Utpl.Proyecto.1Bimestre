@@ -44,7 +44,7 @@ public class InventarioService implements IInventarioService {
     }
 
     @Override
-    public List<Inventario> BuscarPorEmail(String email) {
+    public List<Inventario> buscarPorEmail(String email) {
         // Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'BuscarPorEmail'");
     }

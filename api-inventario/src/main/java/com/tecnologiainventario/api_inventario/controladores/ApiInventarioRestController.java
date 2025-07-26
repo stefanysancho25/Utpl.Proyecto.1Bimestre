@@ -58,7 +58,7 @@ public class ApiInventarioRestController {
         // Mapear DTO a entidadnuevoProductoDto
         Inventario nuevaEntidad = new Inventario();
         // Asigna propiedades del DTO a la entidad
-        nuevaEntidad.setNameUsuario(nuevoProductoDto.getNombre());
+        nuevaEntidad.setNameUsuario(nuevoProductoDto.getNameUsuario());
         nuevaEntidad.setApellido(nuevoProductoDto.getApellido());
         nuevaEntidad.setCedula(nuevoProductoDto.getCedula());
         nuevaEntidad.setTelefono(nuevoProductoDto.getTelefono());

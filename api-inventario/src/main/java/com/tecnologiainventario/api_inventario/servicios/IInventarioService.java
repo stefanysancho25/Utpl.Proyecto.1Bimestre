@@ -6,7 +6,7 @@ import com.tecnologiainventario.api_inventario.entidades.Inventario;
 
 public interface IInventarioService {
 
-    public List<Inventario> BuscarPorEmail(String email);
+    public List<Inventario> buscarPorEmail(String email);
 
     Inventario guardarInventario(Inventario inventario); // Para guardar un nuevo inventario
 

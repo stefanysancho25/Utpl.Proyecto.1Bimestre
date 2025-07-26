@@ -19,6 +19,7 @@ public class InventaroDto {
     private String email;
     private String nombreProducto; // NUEVO
     private String marca;
+    private double costoProducto;
     private String descripcion;
     private int cantidad;
 }
