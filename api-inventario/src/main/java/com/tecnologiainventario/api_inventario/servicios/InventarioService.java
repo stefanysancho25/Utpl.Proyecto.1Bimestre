@@ -5,9 +5,9 @@ import com.tecnologiainventario.api_inventario.repositorio.InventarioRepository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service; // Corregida la anotación
+import org.springframework.stereotype.Service;
 
-@Services
+@Service
 public class InventarioService implements IInventarioService {
 
     @Autowired

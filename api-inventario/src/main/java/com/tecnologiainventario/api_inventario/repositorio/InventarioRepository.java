@@ -9,16 +9,12 @@ import org.springframework.stereotype.Repository;
 
 public interface InventarioRepository extends JpaRepository<Inventario, Integer> {
 
-      public List<Inventario> findByemail(String email);
+      public List<Inventario> findByEmail(String email);
 
-      public List<Inventario> findBynameUsuario(String nameUsuario);
+      public List<Inventario> findByNameUsuario(String nameUsuario);
 
-      public List<Inventario> findByapellido(String apellido);
-
-      public List<Inventario> findBycedula(String cedula);
-
-      public List<Inventario> findBytelefono(String telefono);
-
-      public List<Inventario> findByciudad(String ciudad);
-
+      // public List<Inventario> findByapellido(String apellido);
+      // public List<Inventario> findBycedula(String cedula);
+      // public List<Inventario> findBytelefono(String telefono);
+      // public List<Inventario> findByciudad(String ciudad);
 }

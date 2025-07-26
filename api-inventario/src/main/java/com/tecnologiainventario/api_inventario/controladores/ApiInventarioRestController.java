@@ -6,7 +6,6 @@ import com.tecnologiainventario.api_inventario.servicios.EmailService;
 import com.tecnologiainventario.api_inventario.servicios.InventarioService;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,23 +33,24 @@ public class ApiInventarioRestController {
     }
 
     @GetMapping("/")
-    publicResponseEntity<List<InventarioDto>> listarProductos() {
+    public ResponseEntity<List<InventaroDto>> listarProductos() {
         List<Inventario> entidades = inventarioService.obtenerTodosLosInventarios();
         // Mapear entidades a DTOs
-        List<InventarioDto> dtos = entidades.stream()
-                .map(entidad -> new InventarioDto(
+        List<InventaroDto> dtos = entidades.stream()
+                .map(entidad -> new InventaroDto(
                         (long) entidad.getId(),
                         entidad.getNameUsuario(),
-                        entidad.getDescripcion(),
+                        entidad.getDescripcion(), // ¡Añadido! DTO y Entidad lo tienen
                         entidad.getCantidad(),
                         entidad.getEmail()))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
+    @RequestBody
     @PostMapping("/nuevo")
-    public ResponseEntity<InventarioDto> agregarProducto(@RequestBody InventarioDto nuevoProductoDto) {
-        // Mapear DTO a entidad
+    public ResponseEntity<InventaroDto> agregarProducto(@RequestBody InventaroDto nuevoProductoDto) {
+        // Mapear DTO a entidadnuevoProductoDto
         Inventario nuevaEntidad = new Inventario();
         // Asigna propiedades del DTO a la entidad
         nuevaEntidad.setNameUsuario(nuevoProductoDto.getNombre());
@@ -62,9 +62,11 @@ public class ApiInventarioRestController {
         Inventario inventarioGuardado = inventarioService.guardarInventario(nuevaEntidad);
 
         // Mapear la entidad guardada de nuevo a un DTO para la respuesta
-        InventarioDto respuestaDto = new InventarioDto(
+        InventaroDto respuestaDto = new InventaroDto(
                 (long) inventarioGuardado.getId(),
                 inventarioGuardado.getNameUsuario(),
+                inventarioGuardado.getDescripcion(),
+                inventarioGuardado.getCantidad(),
                 inventarioGuardado.getDescripcion(),
                 inventarioGuardado.getCantidad(),
                 inventarioGuardado.getEmail());
@@ -73,9 +75,9 @@ public class ApiInventarioRestController {
         String correoDestino = inventarioGuardado.getEmail();
         if (correoDestino != null && !correoDestino.isEmpty()) {
             emailService.enviarCorreo(correoDestino, "Nuevo Producto Agregado",
-                    "Se ha agregado un nuevo producto: " + inventarioGuardado.getNameUsuario()
-                            + ". Descripción: " + inventarioGuardado.getDescripcion() + ". Cantidad: "
-                            + inventarioGuardado.getCantidad());
+                    "Se ha agregado un nuevo producto: " + inventarioGuardado.getNameUsuario() + ". Descripción: "
+                            + inventarioGuardado.getDescripcion()
+                            + ". Cantidad: " + inventarioGuardado.getCantidad());
         } else {
             System.out.println("No se proporcionó un correo para enviar la notificación.");
         }
@@ -93,14 +95,14 @@ public class ApiInventarioRestController {
         }
     }
 
-    @GetMapping("/producto/id}")
-    public ResponseEntity<InventarioDto> obtenerProducto(@PathVariable Integer id) { // ID como Integer
+    @GetMapping("/producto/{id}")
+    public ResponseEntity<InventaroDto> obtenerProducto(@PathVariable Integer id) { // ID como Integer
         System.out.println("Buscando producto con ID: " + id);
         Optional<Inventario> inventarioOptional = inventarioService.buscarPorId(id);
 
         if (inventarioOptional.isPresent()) {
             Inventario entidad = inventarioOptional.get();
-            InventarioDto dto = new InventarioDto(
+            InventaroDto dto = new InventaroDto(
                     (long) entidad.getId(),
                     entidad.getNameUsuario(),
                     entidad.getDescripcion(),
@@ -114,16 +116,16 @@ public class ApiInventarioRestController {
 
     // Obtener un ordenes por correo
     @GetMapping("/busqueda/{email}")
-    public ResponseEntity<List<InventarioDto>> getListaInventarioByCorreo(@PathVariable String email) { // Cambiado a
-                                                                                                        // email
+    public ResponseEntity<List<InventaroDto>> getListaInventarioByCorreo(@PathVariable String email) { // Cambiado a
+                                                                                                       // email
         List<Inventario> entidadesInventario = inventarioService.buscarPorEmail(email); // Usar buscarPorEmail
 
         if (entidadesInventario.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        List<InventarioDto> dtos = entidadesInventario.stream()
-                .map(entidad -> new InventarioDto(
+        List<InventaroDto> dtos = entidadesInventario.stream()
+                .map(entidad -> new InventaroDto(
                         (long) entidad.getId(),
                         entidad.getNameUsuario(),
                         entidad.getDescripcion(),

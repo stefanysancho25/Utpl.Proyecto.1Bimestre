@@ -14,10 +14,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "inventarioregistroclientes")
-@AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 
 public class Inventario implements Serializable {
 
@@ -28,14 +28,15 @@ public class Inventario implements Serializable {
 
     private String nameUsuario;
 
-    private String apellido;
+    private String descripcion;
 
-    private String ciudad;
-
-    private String cedula;
-
-    private String telefono;
+    private int cantidad;
 
     private String email;
+
+    // private String apellido;
+    // private String cedula;
+    // private String telefono;
+    // private String ciudad;
 
 }
