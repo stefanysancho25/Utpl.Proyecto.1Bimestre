@@ -41,14 +41,14 @@ public class ApiInventarioRestController {
                         (long) entidad.getId(),
                         entidad.getNameUsuario(),
                         entidad.getApellido(),
-                        entidad.getCedula(), 
+                        entidad.getCedula(),
                         entidad.getTelefono(),
                         entidad.getEmail(),
                         entidad.getNombreProducto(),
-                        entidad.getMarca(),         
+                        entidad.getMarca(),
                         entidad.getCostoProducto(),
-                        entidad.getDescripcion(), 
-                        entidad.getCantidad())),
+                        entidad.getDescripcion(),
+                        entidad.getCantidad()))
 
                 .collect(Collectors.toList());
         return new ResponseEntity<>(dtos, HttpStatus.OK);
@@ -86,18 +86,17 @@ public class ApiInventarioRestController {
                 inventarioGuardado.getMarca(),
                 inventarioGuardado.getCostoProducto(),
                 inventarioGuardado.getDescripcion(),
-                inventarioGuardado.getCantidad ());
+                inventarioGuardado.getCantidad());
 
 
         // Enviar correo de notificación
         String correoDestino = inventarioGuardado.getEmail();
         if (correoDestino != null && !correoDestino.isEmpty()) {
-            emailService.enviarCorreo(correoDestino "Nuevo Producto Agregado", 
+            emailService.enviarCorreo(correoDestino, "Nuevo Producto Agregado", 
                 "Se ha agregado un nuevo producto: " + inventarioGuardado.getNombreProducto() + ". Marca: " + inventarioGuardado.getMarca() 
                 + ". Costo: $" + inventarioGuardado.getCostoProducto() + ". Descripción: " + inventarioGuardado.getDescripcion() +
                 ". Cantidad: " + inventarioGuardado.getCantidad() +". Registrado por: " + inventarioGuardado.getNameUsuario() + " " + inventarioGuardado.getApellido() +
                 " (" + inventarioGuardado.getCedula() + ", " + inventarioGuardado.getTelefono() + ")"
-                 );
         } else {
             System.out.println("No se proporcionó un correo para enviar la notificación.");
         }
@@ -128,12 +127,12 @@ public class ApiInventarioRestController {
                     entidad.getApellido(),
                     entidad.getCedula(),
                     entidad.getTelefono(),
-                    entidad.getEmail();
+                    entidad.getEmail(),
                     entidad.getNombreProducto(),
                     entidad.getMarca(),        
                     entidad.getCostoProducto(),
                     entidad.getDescripcion(),
-                    entidad.getCantidad()),
+                    entidad.getCantidad())
                 
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } else {
@@ -158,13 +157,13 @@ public class ApiInventarioRestController {
                         entidad.getApellido(),
                         entidad.getCedula(),
                         entidad.getTelefono(),
-                        entidad.getEmail()
+                        entidad.getEmail(),
                         entidad.getNombreProducto(),
                         entidad.getMarca(),
-                        entidad.getCostoProducto(), 
+                        entidad.getCostoProducto(),
                         entidad.getDescripcion(),
-                        entidad.getCantidad())),
-                        
+                        entidad.getCantidad()))
+
                 .collect(Collectors.toList());
 
         System.out.println("Obteniendo inventarios por el correo: " + email);

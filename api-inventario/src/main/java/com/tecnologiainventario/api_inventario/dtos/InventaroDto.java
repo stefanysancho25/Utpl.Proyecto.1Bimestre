@@ -17,7 +17,6 @@ public class InventaroDto {
     private String cedula; // NUEVO
     private String telefono;
     private String email;
-
     private String nombreProducto; // NUEVO
     private String marca;
     private String descripcion;
