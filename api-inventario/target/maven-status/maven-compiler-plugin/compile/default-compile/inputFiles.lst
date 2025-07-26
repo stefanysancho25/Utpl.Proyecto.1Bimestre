@@ -1,0 +1,9 @@
+/workspaces/Utpl.Proyecto.1Bimestre/api-inventario/src/main/java/com/tecnologiainventario/api_inventario/ApiInventarioApplication.java
+/workspaces/Utpl.Proyecto.1Bimestre/api-inventario/src/main/java/com/tecnologiainventario/api_inventario/controladores/ApiInventarioRestController.java
+/workspaces/Utpl.Proyecto.1Bimestre/api-inventario/src/main/java/com/tecnologiainventario/api_inventario/dtos/InventaroDto.java
+/workspaces/Utpl.Proyecto.1Bimestre/api-inventario/src/main/java/com/tecnologiainventario/api_inventario/entidades/Inventario.java
+/workspaces/Utpl.Proyecto.1Bimestre/api-inventario/src/main/java/com/tecnologiainventario/api_inventario/repositorio/InventarioRepository.java
+/workspaces/Utpl.Proyecto.1Bimestre/api-inventario/src/main/java/com/tecnologiainventario/api_inventario/servicios/EmailService.java
+/workspaces/Utpl.Proyecto.1Bimestre/api-inventario/src/main/java/com/tecnologiainventario/api_inventario/servicios/IEmailService.java
+/workspaces/Utpl.Proyecto.1Bimestre/api-inventario/src/main/java/com/tecnologiainventario/api_inventario/servicios/IInventarioService.java
+/workspaces/Utpl.Proyecto.1Bimestre/api-inventario/src/main/java/com/tecnologiainventario/api_inventario/servicios/InventarioService.java
