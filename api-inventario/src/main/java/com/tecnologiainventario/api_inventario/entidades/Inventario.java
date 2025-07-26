@@ -28,15 +28,22 @@ public class Inventario implements Serializable {
 
     private String nameUsuario;
 
+    private String apellido;
+
+    private String cedula;
+
+    private String telefono;
+
+    private String email;
+
     private String descripcion;
 
     private int cantidad;
 
-    private String email;
+    private String nombreProducto;
 
-    // private String apellido;
-    // private String cedula;
-    // private String telefono;
-    // private String ciudad;
+    private String marca;
+
+    private double costoProducto;
 
 }

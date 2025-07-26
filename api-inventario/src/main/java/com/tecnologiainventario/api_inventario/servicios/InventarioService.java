@@ -42,4 +42,10 @@ public class InventarioService implements IInventarioService {
         return inventarioRepository.findAll();
 
     }
+
+    @Override
+    public List<Inventario> BuscarPorEmail(String email) {
+        // Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'BuscarPorEmail'");
+    }
 }

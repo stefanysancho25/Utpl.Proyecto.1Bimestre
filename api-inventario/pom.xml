@@ -62,24 +62,26 @@
 			<artifactId>lombok</artifactId>
 			<scope>annotationProcessor</scope>
 		</dependency>
-<!-- Spring Boot Mail Starter (para enviar correos) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-        <!-- spring-context-support es necesario para JavaMailSender si lo usas directamente. -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <!-- Puedes quitar la versión si el parent ya la gestiona y es compatible -->
-            <!-- <version>6.1.5</version> -->
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.13.2</version>
-            <scope>test</scope>
-        </dependency>
+		<!-- Spring Boot Mail Starter (para enviar correos) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<!--spring-context-support
+		es necesario para JavaMailSender si lo usas directamente -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>6.1.5</version>
+			<!-- Puedes quitar la versión si el parent ya la gestiona y es compatible -->
+			<!-- <version>6.1.5</version> -->
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.13.2</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

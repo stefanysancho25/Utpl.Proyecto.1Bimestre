@@ -10,8 +10,8 @@ public class EmailService implements IEmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    @Override
-    public void enviarCorreo(String to, String subject, String text) {
+    public void enviarCorreo(
+            String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("nicolesancho403@gmail.com");
         message.setTo(to);

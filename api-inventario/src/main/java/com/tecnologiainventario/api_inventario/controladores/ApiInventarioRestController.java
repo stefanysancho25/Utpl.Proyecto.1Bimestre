@@ -40,23 +40,36 @@ public class ApiInventarioRestController {
                 .map(entidad -> new InventaroDto(
                         (long) entidad.getId(),
                         entidad.getNameUsuario(),
-                        entidad.getDescripcion(), // ¡Añadido! DTO y Entidad lo tienen
-                        entidad.getCantidad(),
-                        entidad.getEmail()))
+                        entidad.getApellido(),
+                        entidad.getCedula(), 
+                        entidad.getTelefono(),
+                        entidad.getEmail(),
+                        entidad.getNombreProducto(),
+                        entidad.getMarca(),         
+                        entidad.getCostoProducto(),
+                        entidad.getDescripcion(), 
+                        entidad.getCantidad())),
+
                 .collect(Collectors.toList());
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
-    @RequestBody
-    @PostMapping("/nuevo")
+    @PostMapping("/nuevo-enviar-identificacion-correo")
     public ResponseEntity<InventaroDto> agregarProducto(@RequestBody InventaroDto nuevoProductoDto) {
         // Mapear DTO a entidadnuevoProductoDto
         Inventario nuevaEntidad = new Inventario();
         // Asigna propiedades del DTO a la entidad
         nuevaEntidad.setNameUsuario(nuevoProductoDto.getNombre());
+        nuevaEntidad.setApellido(nuevoProductoDto.getApellido());      
+        nuevaEntidad.setCedula(nuevoProductoDto.getCedula());        
+        nuevaEntidad.setTelefono(nuevoProductoDto.getTelefono());
+        nuevaEntidad.setEmail(nuevoProductoDto.getEmail());
+        nuevaEntidad.setNombreProducto(nuevoProductoDto.getNombreProducto()); 
+        nuevaEntidad.setMarca(nuevoProductoDto.getMarca());             
+        nuevaEntidad.setCostoProducto(nuevoProductoDto.getCostoProducto()); 
         nuevaEntidad.setDescripcion(nuevoProductoDto.getDescripcion());
         nuevaEntidad.setCantidad(nuevoProductoDto.getCantidad());
-        nuevaEntidad.setEmail(nuevoProductoDto.getEmail());
+
 
         // Guardar la entidad en la base de datos
         Inventario inventarioGuardado = inventarioService.guardarInventario(nuevaEntidad);
@@ -65,19 +78,26 @@ public class ApiInventarioRestController {
         InventaroDto respuestaDto = new InventaroDto(
                 (long) inventarioGuardado.getId(),
                 inventarioGuardado.getNameUsuario(),
+                inventarioGuardado.getApellido(),
+                inventarioGuardado.getCedula(),
+                inventarioGuardado.getTelefono(),
+                inventarioGuardado.getEmail(),
+                inventarioGuardado.getNombreProducto(),
+                inventarioGuardado.getMarca(),
+                inventarioGuardado.getCostoProducto(),
                 inventarioGuardado.getDescripcion(),
-                inventarioGuardado.getCantidad(),
-                inventarioGuardado.getDescripcion(),
-                inventarioGuardado.getCantidad(),
-                inventarioGuardado.getEmail());
+                inventarioGuardado.getCantidad ());
+
 
         // Enviar correo de notificación
         String correoDestino = inventarioGuardado.getEmail();
         if (correoDestino != null && !correoDestino.isEmpty()) {
-            emailService.enviarCorreo(correoDestino, "Nuevo Producto Agregado",
-                    "Se ha agregado un nuevo producto: " + inventarioGuardado.getNameUsuario() + ". Descripción: "
-                            + inventarioGuardado.getDescripcion()
-                            + ". Cantidad: " + inventarioGuardado.getCantidad());
+            emailService.enviarCorreo(correoDestino "Nuevo Producto Agregado", 
+                "Se ha agregado un nuevo producto: " + inventarioGuardado.getNombreProducto() + ". Marca: " + inventarioGuardado.getMarca() 
+                + ". Costo: $" + inventarioGuardado.getCostoProducto() + ". Descripción: " + inventarioGuardado.getDescripcion() +
+                ". Cantidad: " + inventarioGuardado.getCantidad() +". Registrado por: " + inventarioGuardado.getNameUsuario() + " " + inventarioGuardado.getApellido() +
+                " (" + inventarioGuardado.getCedula() + ", " + inventarioGuardado.getTelefono() + ")"
+                 );
         } else {
             System.out.println("No se proporcionó un correo para enviar la notificación.");
         }
@@ -105,9 +125,16 @@ public class ApiInventarioRestController {
             InventaroDto dto = new InventaroDto(
                     (long) entidad.getId(),
                     entidad.getNameUsuario(),
+                    entidad.getApellido(),
+                    entidad.getCedula(),
+                    entidad.getTelefono(),
+                    entidad.getEmail();
+                    entidad.getNombreProducto(),
+                    entidad.getMarca(),        
+                    entidad.getCostoProducto(),
                     entidad.getDescripcion(),
-                    entidad.getCantidad(),
-                    entidad.getEmail());
+                    entidad.getCantidad()),
+                
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -128,9 +155,16 @@ public class ApiInventarioRestController {
                 .map(entidad -> new InventaroDto(
                         (long) entidad.getId(),
                         entidad.getNameUsuario(),
+                        entidad.getApellido(),
+                        entidad.getCedula(),
+                        entidad.getTelefono(),
+                        entidad.getEmail()
+                        entidad.getNombreProducto(),
+                        entidad.getMarca(),
+                        entidad.getCostoProducto(), 
                         entidad.getDescripcion(),
-                        entidad.getCantidad(),
-                        entidad.getEmail()))
+                        entidad.getCantidad())),
+                        
                 .collect(Collectors.toList());
 
         System.out.println("Obteniendo inventarios por el correo: " + email);
