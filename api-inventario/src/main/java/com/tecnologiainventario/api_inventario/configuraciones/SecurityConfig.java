@@ -22,12 +22,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
-                        // 1. Protege el endpoint de LISTAR productos (GET /api/inventario/)
-                        // Este endpoint requerirá autenticación para acceder a la lista.
+
                         .requestMatchers(HttpMethod.GET, "/api/inventario/").authenticated()
-                        // 2. El endpoint de ELIMINAR producto (DELETE /api/inventario/eliminar/{id})
-                        // requiere el rol ADMIN.
+
                         .requestMatchers(HttpMethod.DELETE, "/api/inventario/eliminar/**").hasRole("ADMIN")
+
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults()) // Habilita autenticación Basic
                 .csrf(csrf -> csrf.disable()); // Swagger necesita que CSRF esté deshabilitado
@@ -40,7 +39,7 @@ public class SecurityConfig {
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username("admin")
                 .password("admin123")
-                .roles("USER")
+                .roles("ADMIN", "USER")
                 .build();
 
         return new InMemoryUserDetailsManager(user);
