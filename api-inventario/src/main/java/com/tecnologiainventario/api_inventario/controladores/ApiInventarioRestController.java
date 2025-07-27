@@ -1,6 +1,7 @@
 package com.tecnologiainventario.api_inventario.controladores;
 
 import com.tecnologiainventario.api_inventario.dtos.InventaroDto;
+import com.tecnologiainventario.api_inventario.dtos.InventaroDtov2;
 import com.tecnologiainventario.api_inventario.entidades.Inventario;
 import com.tecnologiainventario.api_inventario.servicios.EmailService;
 import com.tecnologiainventario.api_inventario.servicios.InventarioService;
