@@ -35,6 +35,7 @@ public class ApiInventarioRestController {
     public String holaMundo() {
         return "Hola Mundo desde el API de Inventario!";
     }
+
     @Operation(summary = "listar de productos")
     @GetMapping("/")
     public ResponseEntity<List<InventaroDto>> listarProductos() {
@@ -56,6 +57,7 @@ public class ApiInventarioRestController {
                 .collect(Collectors.toList());
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
+
     @Operation(summary = "identificacion de correo")
     @PostMapping("/nuevo-enviar-identificacion-correo")
     public ResponseEntity<InventaroDto> agregarProducto(@RequestBody InventaroDto nuevoProductoDto) {
@@ -107,6 +109,7 @@ public class ApiInventarioRestController {
 
         return new ResponseEntity<>(respuestaDto, HttpStatus.CREATED);
     }
+
     @Operation(summary = "eliminar producto")
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarProducto(@PathVariable Integer id) { // ID como Integer
@@ -117,9 +120,41 @@ public class ApiInventarioRestController {
             return new ResponseEntity<>("Producto no encontrado con ID: " + id, HttpStatus.NOT_FOUND);
         }
     }
+
+    // obtener todo los productos vercion 1
+
     @Operation(summary = "obtener producto")
-    @GetMapping("/producto/{id}")
-    public ResponseEntity<InventaroDto> obtenerProducto(@PathVariable Integer id) { // ID como Integer
+    @GetMapping("/producto-v1/{id}")
+    public ResponseEntity<InventaroDto> obtenerProductov1(@PathVariable Integer id) { // ID como Integer
+        System.out.println("Buscando producto con ID: " + id);
+        Optional<Inventario> inventarioOptional = inventarioService.buscarPorId(id);
+
+        if (inventarioOptional.isPresent()) {
+            Inventario entidad = inventarioOptional.get();
+            InventaroDto dto = new InventaroDto(
+                    (long) entidad.getId(),
+                    entidad.getNameUsuario(),
+                    entidad.getApellido(),
+                    entidad.getCedula(),
+                    entidad.getTelefono(),
+                    entidad.getEmail(),
+                    entidad.getNombreProducto(),
+                    entidad.getMarca(),
+                    entidad.getCostoProducto(),
+                    entidad.getDescripcion(),
+                    entidad.getCantidad());
+
+            return new ResponseEntity<>(dto, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // obtener todo los productos vercion 2
+
+    @Operation(summary = "obtener producto")
+    @GetMapping("/producto-v2/{id}")
+    public ResponseEntity<InventaroDto> obtenerProductov2(@PathVariable Integer id) { // ID como Integer
         System.out.println("Buscando producto con ID: " + id);
         Optional<Inventario> inventarioOptional = inventarioService.buscarPorId(id);
 
