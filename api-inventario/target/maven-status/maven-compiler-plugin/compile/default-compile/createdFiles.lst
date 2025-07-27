@@ -1,0 +1,9 @@
+com/tecnologiainventario/api_inventario/ApiInventarioApplication.class
+com/tecnologiainventario/api_inventario/repositorio/InventarioRepository.class
+com/tecnologiainventario/api_inventario/controladores/ApiInventarioRestController.class
+com/tecnologiainventario/api_inventario/servicios/InventarioService.class
+com/tecnologiainventario/api_inventario/servicios/IEmailService.class
+com/tecnologiainventario/api_inventario/dtos/InventaroDto.class
+com/tecnologiainventario/api_inventario/entidades/Inventario.class
+com/tecnologiainventario/api_inventario/servicios/EmailService.class
+com/tecnologiainventario/api_inventario/servicios/IInventarioService.class

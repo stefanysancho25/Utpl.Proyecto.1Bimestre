@@ -29,9 +29,6 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-		<!-- AÑADIDO: Propiedades para el compilador de Maven -->
-		<maven.compiler.source>${java.version}</maven.compiler.source>
-		<maven.compiler.target>${java.version}</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -98,9 +95,6 @@
 				<version>3.14.0</version> <!-- Usamos la versión que ya te aparecía en el log -->
 				<configuration>
 					<release>${java.version}</release> <!-- Usa la versión definida en properties -->
-					<!-- También puedes usar <source>${java.version}</source> y
-					<target>${java.version}</target> -->
-					<!-- Pero <release> es más moderno para Java 9+ -->
 				</configuration>
 			</plugin>
 		</plugins>
