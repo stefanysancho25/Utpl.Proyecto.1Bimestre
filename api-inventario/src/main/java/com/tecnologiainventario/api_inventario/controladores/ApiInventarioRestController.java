@@ -154,19 +154,14 @@ public class ApiInventarioRestController {
 
     @Operation(summary = "obtener producto")
     @GetMapping("/producto-v2/{id}")
-    public ResponseEntity<InventaroDto> obtenerProductov2(@PathVariable Integer id) { // ID como Integer
+    public ResponseEntity<InventaroDtov2> obtenerProductov2(@PathVariable Integer id) { // ID como Integer
         System.out.println("Buscando producto con ID: " + id);
         Optional<Inventario> inventarioOptional = inventarioService.buscarPorId(id);
 
         if (inventarioOptional.isPresent()) {
             Inventario entidad = inventarioOptional.get();
-            InventaroDto dto = new InventaroDto(
+            InventaroDtov2 dto = new InventaroDtov2(
                     (long) entidad.getId(),
-                    entidad.getNameUsuario(),
-                    entidad.getApellido(),
-                    entidad.getCedula(),
-                    entidad.getTelefono(),
-                    entidad.getEmail(),
                     entidad.getNombreProducto(),
                     entidad.getMarca(),
                     entidad.getCostoProducto(),
