@@ -1,6 +1,5 @@
 package com.tecnologiainventario.api_inventario.dtos;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,5 +17,4 @@ public class InventaroDtov2 {
     private double costoProducto;
     private String descripcion;
     private int cantidad;
-} 
-
+}

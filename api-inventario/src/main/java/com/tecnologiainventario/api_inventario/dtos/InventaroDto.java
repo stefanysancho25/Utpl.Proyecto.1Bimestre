@@ -16,8 +16,8 @@ public class InventaroDto {
     private String apellido; // NUEVO
     private String cedula; // NUEVO
     private String telefono;
-    private String email;swagger-ui/index.html
-
+    private String email;
+    
     private String nombreProducto; // NUEVO
     private String marca;
     private double costoProducto;
