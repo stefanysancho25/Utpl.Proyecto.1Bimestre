@@ -4,6 +4,9 @@ import com.tecnologiainventario.api_inventario.dtos.InventaroDto;
 import com.tecnologiainventario.api_inventario.entidades.Inventario;
 import com.tecnologiainventario.api_inventario.servicios.EmailService;
 import com.tecnologiainventario.api_inventario.servicios.InventarioService;
+
+import io.swagger.v3.oas.annotations.Operation;
+
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.List;
@@ -27,11 +30,12 @@ public class ApiInventarioRestController {
 
     }
 
+    @Operation(summary = "saludo")
     @GetMapping("/hola")
     public String holaMundo() {
         return "Hola Mundo desde el API de Inventario!";
     }
-
+    @Operation(summary = "listar de productos")
     @GetMapping("/")
     public ResponseEntity<List<InventaroDto>> listarProductos() {
         List<Inventario> entidades = inventarioService.obtenerTodosLosInventarios();
@@ -52,7 +56,7 @@ public class ApiInventarioRestController {
                 .collect(Collectors.toList());
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
-
+    @Operation(summary = "identificacion de correo")
     @PostMapping("/nuevo-enviar-identificacion-correo")
     public ResponseEntity<InventaroDto> agregarProducto(@RequestBody InventaroDto nuevoProductoDto) {
         // Mapear DTO a entidadnuevoProductoDto
@@ -103,7 +107,7 @@ public class ApiInventarioRestController {
 
         return new ResponseEntity<>(respuestaDto, HttpStatus.CREATED);
     }
-
+    @Operation(summary = "eliminar producto")
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarProducto(@PathVariable Integer id) { // ID como Integer
         boolean eliminado = inventarioService.eliminarInventario(id);
@@ -113,7 +117,7 @@ public class ApiInventarioRestController {
             return new ResponseEntity<>("Producto no encontrado con ID: " + id, HttpStatus.NOT_FOUND);
         }
     }
-
+    @Operation(summary = "obtener producto")
     @GetMapping("/producto/{id}")
     public ResponseEntity<InventaroDto> obtenerProducto(@PathVariable Integer id) { // ID como Integer
         System.out.println("Buscando producto con ID: " + id);
@@ -141,6 +145,7 @@ public class ApiInventarioRestController {
     }
 
     // Obtener un ordenes por correo
+    @Operation(summary = "Obtener un ordenes por correo")
     @GetMapping("/busqueda/{email}")
     public ResponseEntity<List<InventaroDto>> getListaInventarioByCorreo(@PathVariable String email) { // Cambiado a
                                                                                                        // email
